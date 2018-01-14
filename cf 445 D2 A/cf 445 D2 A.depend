@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1510504658 source:c:\work\c++\cf 445 d2 a\main.cpp
+	<iostream>
+	<algorithm>
+

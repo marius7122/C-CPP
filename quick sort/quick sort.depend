@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513364499 source:c:\work\c++\quick sort\main.cpp
+	<stdio.h>
+	<stdlib.h>
+

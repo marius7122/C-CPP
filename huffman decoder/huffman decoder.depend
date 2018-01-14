@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513384325 source:c:\work\c++\huffman decoder\main.cpp
+	<stdio.h>
+	<string.h>
+

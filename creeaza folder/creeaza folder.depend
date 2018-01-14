@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1498849207 source:c:\work\c++\creeaza folder\main.cpp
+	<iostream>
+	<string>
+	<sstream>
+	<stdio.h>
+	<stdlib.h>
+

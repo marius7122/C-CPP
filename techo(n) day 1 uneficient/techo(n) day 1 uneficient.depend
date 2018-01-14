@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1512766962 source:c:\work\c++\techo(n) day 1 uneficient\main.cpp
+	<stdio.h>
+	<vector>
+

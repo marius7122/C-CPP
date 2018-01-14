@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1505933997 source:c:\work\c++\sum\main.cpp
+	<stdio.h>
+	<vector>
+

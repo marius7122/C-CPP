@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513367785 source:c:\work\c++\bleach\main.cpp
+	<stdio.h>
+	<set>
+

@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1506191953 source:c:\work\c++\hack\main.cpp
+	<stdio.h>
+	<vector>
+	<string>
+	<queue>
+	<iostream>
+

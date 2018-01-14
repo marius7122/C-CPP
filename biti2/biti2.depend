@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1505860519 source:c:\work\c++\biti2\main.cpp
+	<stdio.h>
+	<string.h>
+

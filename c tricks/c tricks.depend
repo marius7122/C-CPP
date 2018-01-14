@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1498827300 source:c:\work\c++\c tricks\main.cpp
+	<stdio.h>
+
+1498827514 source:c:\work\c++\c tricks\main.c
+	<stdio.h>
+
