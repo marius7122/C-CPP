@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1516058235 source:c:\work\c++\diehard\main.cpp
+	<stdio.h>
+	<vector>
+	<algorithm>
+
