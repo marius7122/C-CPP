@@ -1,27 +1,15 @@
 #include <stdio.h>
 #include <vector>
-#include <algorithm>
 
-const int N = 1005;
+const int N = 1001;
 const int inf = 10000000;
-
-struct ind
-{
-    int x,i;
-}v[N];
-
-bool cmp(ind a,ind b)
-{
-    return a.x < b.x;
-}
-
 
 FILE *f1 = fopen("diehard.in","r");
 FILE *f2 = fopen("diehard.out","w");
 
 int n,m,i,j;
 int d[N][N];
-short mat[N][N];
+short v[N];
 
 bool checkPos(int x,int y)
 {
@@ -31,66 +19,72 @@ bool checkPos(int x,int y)
 }
 
 int dirX[] = {-1, 0, 1};
-int dirY[] = {0, 1, 0};
-void dfs(int x, int y)
+int dirY[] = {0, -1, 0};
+void drum(int x,int y)
 {
-    int X,Y,c;
-    for(int dir=0;dir<3;dir++)
+    char ord;
+
+    if(y == 0)
+    {
+        fprintf(f2,"%d ",x+1);
+        return;
+    }
+
+    int X,Y,dir,min=inf,pmin;
+
+    for(dir=0;dir<3;dir++)
     {
         X = x + dirX[dir];
         Y = y + dirY[dir];
 
-        if(!checkPos(X,Y))
-            continue;
-
-        c = d[x][y] + mat[X][Y];
-        if(d[X][Y] > c)
-        {
-            d[X][Y] = c;
-            dfs(X,Y);
-        }
+        if(checkPos(X,Y))
+            if(d[X][Y] < min)
+            {
+                min = d[X][Y];
+                pmin = dir;
+            }
     }
+
+    drum(x+dirX[pmin], y+dirY[pmin]);
+
+    if(pmin == 0) ord = 'S';
+    if(pmin == 1) ord = 'E';
+    if(pmin == 2) ord = 'N';
+
+    fprintf(f2,"%c",ord);
 }
 
-std::vector<char> ord;
-int start;
-void drum(int x,int y)
+void verificaNod(int x,int y)
 {
-    //printf("%d %d\n",x,y);
-
-    if(y == 0)
+    int dir,X,Y,min=inf;
+    for(dir=0;dir<3;dir++)
     {
-        start = x;
-        return;
+        X = x + dirX[dir];
+        Y = y + dirY[dir];
+
+        if(checkPos(X,Y))
+            if(d[X][Y] < min)
+                min = d[X][Y];
     }
 
-    int X,Y;
+    d[x][y] = v[x] + min;
+}
 
-    //est
-    X = x; Y = y-1;
-    //printf("\t%d %d\n",X,Y);
-    if(checkPos(X,Y) && d[X][Y] + mat[x][y] == d[x][y])
+void creeazaMatrice()
+{
+    int i,j;
+    for(j=1;j<m;j++)
     {
-        ord.push_back('E');
-        drum(X,Y);
-    }
+        for(i=0;i<n;i++)
+        {
+            v[i] = d[i][j];
+            d[i][j] = inf;
+        }
 
-    //nord
-    X = x+1; Y = y;
-    //printf("\t%d %d\n",X,Y);
-    if(checkPos(X,Y) && d[X][Y] + mat[x][y] == d[x][y])
-    {
-        ord.push_back('N');
-        drum(X,Y);
-    }
-
-    //sud
-    X = x-1; Y = y;
-    //printf("\t%d %d\n",X,Y);
-    if(checkPos(X,Y) && d[X][Y] + mat[x][y] == d[x][y])
-    {
-        ord.push_back('S');
-        drum(X,Y);
+        for(i=0;i<n;i++)
+            verificaNod(i,j);
+        for(i=n-1;i>=0;i--)
+            verificaNod(i,j);
     }
 }
 
@@ -100,31 +94,20 @@ int main()
     for(i=0;i<n;i++)
         for(j=0;j<m;j++)
         {
-            fscanf(f1,"%d",&mat[i][j]);
-
-            if(j)
-                d[i][j] = inf;
-            else
-            {
-                d[i][j] = mat[i][j];
-                v[i].i = i;
-                v[i].x = mat[i][j];
-            }
+            fscanf(f1,"%d",&d[i][j]);
         }
 
-    for(i=0;i<n;i++)
-        dfs(i,0);
+    creeazaMatrice();
 
-    int min = 0;
+    int min=0;
     for(i=1;i<n;i++)
         if(d[i][m-1] < d[min][m-1])
             min = i;
 
-    drum(min, m-1);
 
-    fprintf(f2,"%d\n%d ",d[min][m-1],start+1);
-    for(i=ord.size()-1;i>=0;i--)
-        fprintf(f2,"%c",ord[i]);
+    fprintf(f2,"%d\n",d[min][m-1]);
+
+    drum(min,m-1);
 
     return 0;
 }
