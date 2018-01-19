@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1515768167 source:d:\work\cpp\tema 10 2\main.cpp
+	<stdio.h>
+	<vector>
+	<queue>
+
